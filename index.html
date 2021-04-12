@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<htmllang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>facedook Front Page</title>
+    <style>
+        body {
+          background-color: #3b5998;
+          color: white;
+        }
+    </style>
+  </head>
+  <body style="font-family: helvetica neue">
+
+  <!-- include jQuery & my JS file-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="readwrite.js" charset="utf-8"></script>
+
+	<h1>facedook</h1>
+
+<!-- main table -->
+<table cellspacing="10">
+
+  <!-- Names -->
+  <tr>
+    <td>
+      <b> <em> cam </em> </b> <br>
+      @gun
+    </td>
+    <td>
+      <b> <em> allie </em> </b> <br>
+      @gay
+    </td>
+  </tr>
+
+  <!-- Profile Pictures -->
+  <tr>
+    <td><img src="/profile_pictures/cam_pic.jpg" alt="cam pic" height="200"></td>
+    <td><img src="/profile_pictures/allie_pic.png" alt="allie pic" height="200"></td>
+  </tr>
+
+  <!-- Bios -->
+  <tr>
+    <td>
+      <!-- initialize bio -->
+    	<p id="cam_bio" contenteditable="true">
+          cam bio
+      </p>
+    </td>
+    <td>
+      <p id="allie_bio" contenteditable="true">
+        <em> allie bio </em>
+      </p>
+    </td>
+  </tr>
+
+  <!-- Statuses -->
+  <tr>
+    <td>
+    <h2> status </h2>
+
+    <!-- initialize status -->
+    <p id="cam_status" contenteditable="true"> </p>
+
+    </td>
+    <td>
+
+    <h2> status </h2>
+
+      <p id="allie_status" contenteditable="true"> </p>
+
+    </td>
+  </tr>
+
+  <!-- News -->
+  <tr>
+    <td>
+    <h2> news </h2>
+    <p id="cam_news" contenteditable="true">
+      cam news
+    </p>
+    </td>
+    <td>
+    <h2> news </h2>
+    <p contenteditable="true">
+      allie news
+    </p>
+    </td>
+  </tr>
+  <!-- Top 8 -->
+  <tr>
+    <td>
+      <h2> cam top 8 (under construction)</h2>
+      <ol id="cam_top8" contenteditable="true">
+      </ol>
+     </td>
+    <td>
+      <h2> allie top 8 (under construction)</h2>
+      <ol id="allie_top8" contenteditable="true">
+      </ol>
+    </td>
+
+  <!-- KOTD -->
+  </tr>
+  <tr>
+    <td>
+    <h2> kotd </h2>
+    <!-- initialize kotd -->
+    <p id="cam_kotd" contenteditable="true"> </p>
+    </td>
+    <td>
+    <h2> kotd </h2>
+    <p id="allie_kotd" contenteditable="true"> </p>
+    </td>
+  </tr>
+
+
+</table>
+</body>
+</html>
