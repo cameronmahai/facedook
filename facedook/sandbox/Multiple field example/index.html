@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<htmllang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>facedook Front Page</title>
+    <style>
+        body {
+          background-color: #3b5998;
+          color: white;
+        }
+    </style>
+  </head>
+  <body style="font-family: helvetica neue">
+
+	<h1>facedook</h1>
+	<!-- <button type="button" id="fetchBtn">fetch data from file</button> -->
+  <!-- <button type="button" id="WriteBtn">write data to file</button> -->
+
+  <!-- initialize bio -->
+	<p id="bio" contenteditable="true"> </p>
+
+	<!-- initialize status -->
+  <p id="status" contenteditable="true"> </p>
+
+	<!-- initialize kotd -->
+	<p id="kotd" contenteditable="true"> </p>
+
+	<!-- include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<script>
+
+	var field_array = ["bio", "status", "kotd"];
+
+	//read from TXT files on page load
+	$(document).ready(function() {
+
+		console.log('ajax read function running...');
+		var i;
+
+		for (i = 0; i < field_array.length; i++) {
+			var field = field_array[i];
+
+				console.log('retrieving ' + field + '...');
+				$.ajax({
+					type: "GET",
+					async: false,
+					url: "read.php?field=" + field,
+				}).done(function( msg ) {
+					console.log( "read the following from the TXT files: " + msg );
+					document.getElementById(field).innerHTML = msg;
+				});
+
+		//end loop
+		}
+
+	//end read function
+	});
+
+	//write changes to file on click-out
+	$(document).click(function(event) {
+	var $target = $(event.target);
+	if(!$target.closest('#bio').length &&
+		!$('#bio').is(':empty')) {
+
+		console.log('ajax write bio/status function ran');
+
+		var bio = document.getElementById("bio").innerHTML;
+		var status = document.getElementById("status").innerHTML;
+		var kotd = document.getElementById("kotd").innerHTML;
+
+		var field_value_array = [bio,status,kotd];
+
+		$.ajax({
+			type: "POST",
+			url: "write.php",
+		 data: {fields: field_value_array}
+		}).done(function( msg ) {
+			console.log( "wrote the following to the TXT files: " + msg);
+		});
+
+	}
+});
+
+	</script>
+</body>
+
+</html>

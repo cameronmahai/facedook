@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<!-- <button type="button" id="fetchBtn">fetch data from file</button> -->
+
+  <!-- <button type="button" id="WriteBtn">write data to file</button> -->
+
+	<p id="text_to_change" contenteditable="true"> </p>
+
+	<p id="clickmessage"></p>
+
+	<p id="txt"></p>
+
+	<!-- include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<script>
+
+	//jQuery GET -- read from the .txt file (on page load)
+	$(document).ready(function() {
+		console.log('ajax read function ran');
+		$.ajax({
+			type: "GET",
+			url: "read.php",
+		// data: {data: 'data'}
+		}).done(function( msg ) {
+			console.log( "read the following from the database: " + msg );
+			document.getElementById("text_to_change").innerHTML = msg;
+		});
+	});
+
+	//jQuery POST -- write to the .txt file (on button click)
+	// $('#WriteBtn').click(function() {
+	// 	console.log('ajax write function ran');
+	// 	var textToWrite = document.getElementById("text_to_change").innerHTML;
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "write.php",
+	// 	 data: {data: textToWrite}
+	// 	}).done(function( msg ) {
+	// 		console.log( "wrote the following to the database: " + msg);
+	// 	});
+	// });
+
+	//jQuery POST rewrite -- attempting to write once you click out
+	//still should be updated so it doesn't write when no changes have been made (not really necessary but still)
+		$(document).click(function(event) {
+	  var $target = $(event.target);
+	  if(!$target.closest('#text_to_change').length &&
+			!$('#text_to_change').is(':empty')) {
+
+			console.log('ajax write function ran');
+			var textToWrite = document.getElementById("text_to_change").innerHTML;
+			$.ajax({
+				type: "POST",
+				url: "write.php",
+			 data: {data: textToWrite}
+			}).done(function( msg ) {
+				console.log( "wrote the following to the database: " + msg);
+			});
+
+	  }
+	});
+
+
+
+	</script>
+</body>
+
+</html>
